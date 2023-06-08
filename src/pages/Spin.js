@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import WheelComponent from "react-wheel-of-prizes";
 import FormContent from "../components/FormContent";
 import { DatabaseService } from "../context/DatabaseContext";
+import { useNavigate } from "react-router-dom";
 
 const Spin = () => {
   const [showModal, setShowModal] = useState(true);
   const [phone, setPhone] = useState("");
   const [lostModal, setLostModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const hideModal = () => {
     setShowModal(false);
@@ -48,7 +51,7 @@ const Spin = () => {
     };
 
     if (winner === "Lucky Winner") {
-      alert("Congratulation! You won the prize");
+      navigate("/won");
     } else {
       setLostModal(true);
     }
