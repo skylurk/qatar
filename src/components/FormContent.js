@@ -1,15 +1,27 @@
 import { TextInput } from 'flowbite-react';
 import React, { useState } from 'react'
+import { DatabaseService } from '../context/DatabaseContext';
 
-const FormContent = ({hideModal}) => {
+const FormContent = ({hideModal, phoneSet }) => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
+
+    const { createUser } = DatabaseService();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(phone, email);
+        phoneSet(phone);
+        const data = {
+            email: email,
+            phone: phone, 
+            date: new Date()
+        }
+        createUser(data);
         hideModal();
     }
+
+    console.log(phone);
 
     return (
         <div>

@@ -8,6 +8,7 @@ const Question = () => {
   const [showModal, setShowModal] = useState(true);
   const [index, setIndex] = useState(0);
   const [score, setScore] = useState(1);
+  const [phone, setPhone] = useState("");
 
   useEffect(() => {
     console.log(score);
@@ -80,11 +81,18 @@ const Question = () => {
     setScore(newVal);
   }
 
+  const getPhone = (x) => {
+    setPhone(x);
+    console.log('x', x);
+  };
+
+  
+
 
   return (
     <div className='flex flex-col justify-center items-center min-h-screen'>
-      score: {score}
-      <div className="w-1/2 bg-white rounded-lg p-4">
+      <img src="/images/qt.png" alt="" width='200px' />
+      <div className="w-1/2 bg-white rounded-lg p-4 mt-4">
         <QuestionComponent
           quiz={quiz[index]}
           handleNext={handleNext}
@@ -99,7 +107,7 @@ const Question = () => {
           ANSWER & WIN
         </Modal.Header>
         <Modal.Body>
-          <FormContent hideModal={hideModal} />
+          <FormContent hideModal={hideModal} phoneSet={getPhone} />
         </Modal.Body>
 
       </Modal>

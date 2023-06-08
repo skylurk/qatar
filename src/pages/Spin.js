@@ -1,18 +1,17 @@
-import { Button, Modal, TextInput } from 'flowbite-react';
-import React, { useState } from 'react';
-import WheelComponent from 'react-wheel-of-prizes';
-import FormContent from '../components/FormContent';
+import { Button, Modal, TextInput } from "flowbite-react";
+import React, { useState } from "react";
+import WheelComponent from "react-wheel-of-prizes";
+import FormContent from "../components/FormContent";
+import { DatabaseService } from "../context/DatabaseContext";
 
 const Spin = () => {
-
   const [showModal, setShowModal] = useState(true);
-
-
+  const [phone, setPhone] = useState("");
+  const [lostModal, setLostModal] = useState(false);
 
   const hideModal = () => {
     setShowModal(false);
-  }
-
+  };
 
   const segments = [
     "Chittagong",
@@ -30,22 +29,39 @@ const Spin = () => {
     "#5C0632",
     "#EDE6E6",
     "#EDE6E6",
-    "#EDE6E6"
+    "#EDE6E6",
   ];
+
+  const { updateUser } = DatabaseService();
+
+  const getPhone = (x) => {
+    setPhone(x);
+    console.log("x", x);
+  };
 
   const onFinished = (winner) => {
     console.log(winner);
 
-    if (winner === 'Lucky Winner') {
-      alert('Congratulation! You won the prize')
+    const data = {
+      score: winner,
+      phone: phone,
+    };
+
+    if (winner === "Lucky Winner") {
+      alert("Congratulation! You won the prize");
     } else {
-      // alert('Sorry! Try again')
+      setLostModal(true);
     }
   };
 
+  const handleClose = () => {
+    setLostModal(false);
+  };
+
+  console.log("phone", phone);
 
   return (
-    <div className='w-full min-h-screen bg-gray-50 flex justify-center'>
+    <div className="w-full min-h-screen bg-gray-50 flex justify-center">
       <div className="w-1/2">
         <WheelComponent
           segments={segments}
@@ -63,19 +79,38 @@ const Spin = () => {
         />
       </div>
 
-      <Modal
-        show={showModal}>
-        <Modal.Header>
-          SPIN & WIN
-        </Modal.Header>
+      <Modal show={showModal}>
+        <Modal.Header>SPIN & WIN</Modal.Header>
         <Modal.Body>
-          <FormContent hideModal={hideModal} />
+          <FormContent hideModal={hideModal} phoneSet={getPhone} />
         </Modal.Body>
-
       </Modal>
 
+      <Modal show={lostModal} onClose={handleClose}>
+        <Modal.Header>
+          <span className="text-sm">SPIN & WIN</span>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="flex flex-col gap-4">
+            <h2 className="text-sm font-semibold">
+              Oh Snap! Better luck next time
+            </h2>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="w-full">
+            <button
+              onClick={() => window.location.reload()}
+              type="submit"
+              className="focus:outline-none text-white w-full bg-[#5C0632] hover:bg-[#60113a] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-[#] dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+            >
+              DONE
+            </button>
+          </div>
+        </Modal.Footer>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Spin
+export default Spin;

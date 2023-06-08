@@ -4,6 +4,7 @@ import Welcome from './Welcome'
 import Question from './Question'
 import Spin from './Spin'
 import Selection from './Selection'
+import Won from './Won'
 
 const RootPage = () => {
   return (
@@ -13,6 +14,7 @@ const RootPage = () => {
             <Route path='/selection' element={<Selection />} />
             <Route path='/question' element={<Question />} />
             <Route path='/spin' element={<Spin />} />
+            <Route path='/won' element={<Won />} />
         </Routes>
     </div>
   )
