@@ -4,7 +4,7 @@ import WheelComponent from "react-wheel-of-prizes";
 import FormContent from "../components/FormContent";
 import { DatabaseService } from "../context/DatabaseContext";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 const Spin = () => {
   const [showModal, setShowModal] = useState(true);
   const [phone, setPhone] = useState("");
@@ -102,13 +102,13 @@ const Spin = () => {
         </Modal.Body>
         <Modal.Footer>
           <div className="w-full">
-            <button
-              onClick={() => window.location.reload()}
+            <Link
+              to="/selection"
               type="submit"
               className="focus:outline-none text-white w-full bg-[#5C0632] hover:bg-[#60113a] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-[#] dark:hover:bg-purple-700 dark:focus:ring-purple-900"
             >
               DONE
-            </button>
+            </Link>
           </div>
         </Modal.Footer>
       </Modal>
