@@ -28,7 +28,7 @@ const Selection = () => {
                 <Card className='w-1/2'>
                     <h2 className='text-[#5C0632] font-bold'>Quick Fire Questions</h2>
                     <p>Win amazing prizes for answering the Quick Fire Questions Correctly</p>
-                    <Link to='/question' type="submit" className="focus:outline-none text-white bg-[#5C0632] hover:bg-[#60113a] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-center text-sm px-5 py-2.5 mb-2 dark:bg-[#] dark:hover:bg-purple-700 dark:focus:ring-purple-900">Answer</Link>
+                    <Link to='/qr' type="submit" className="focus:outline-none text-white bg-[#5C0632] hover:bg-[#60113a] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-center text-sm px-5 py-2.5 mb-2 dark:bg-[#] dark:hover:bg-purple-700 dark:focus:ring-purple-900">Answer</Link>
                 </Card>
             </div>
 
